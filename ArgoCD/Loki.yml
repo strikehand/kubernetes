@@ -1,0 +1,27 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: Loki
+spec:
+  destination:
+    namespace: loki
+    server: https://kubernetes.default.svc
+  source:
+    path: ArgoCD/Loki/Loki-replication.yml
+    repoURL: git@github.com/strikehand/kubernetes
+    targetRevision: HEAD
+  source:
+    repoURL: https://grafana.github.io/helm-charts
+    targetRevision: 5.36.0  # Актуальная версия чарта Loki (проверьте перед применением)
+    chart: loki
+    helm:
+      values: |
+        mode: single  # Режим SingleBinary
+        persistence:
+          enabled: true  # Включить Persistent Volume
+          size: 10Gi     # Размер хранилища
+        auth_enabled: false  # Отключить аутентификацию (для теста)
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
