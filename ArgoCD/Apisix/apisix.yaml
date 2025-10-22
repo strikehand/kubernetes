@@ -14,5 +14,5 @@ spec:
     targetRevision: 'master'
     helm:
       valueFiles:
-      - Dev/devcft.yaml
+      - ApisixRoutes/TestUpstreams.yaml
   project: apisix-routes 
