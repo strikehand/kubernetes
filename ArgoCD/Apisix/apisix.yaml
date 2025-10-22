@@ -10,8 +10,8 @@ spec:
     server: 'https://kubernetes.default.svc'
   source:
     path: .
-    repoURL: 'https://gitlab.bankspb.ru/integration-platform/apisix-routes.git'
-    targetRevision: 'Dev-values'
+    repoURL: 'https://github.com/strikehand/kubernetes/tree/8ab93fbdfb33d5a049c914e3d41e7f5838221c39/ApisixRoutes'
+    targetRevision: 'master'
     helm:
       valueFiles:
       - Dev/devcft.yaml
