@@ -1,0 +1,54 @@
+apisixRoutes:
+  - name: devcft-session-basic
+    namespace: apisix
+    routeName: devcft-session-basic
+    host: apisix.dev.integra.bankspb.ru
+    path: /devcft/session/basic
+    methods: [GET]
+    plugins:
+      - name: authz-keycloak
+        enable: true
+        config:
+          client_id: "apisix"
+          client_secret: ""
+          discovery: "https://keycloak.dev.integra.bankspb.ru/realms/integra/.well-known/openid-configuration"
+          permissions: ["cft"]
+          policy_enforcement_mode: "ENFORCING"
+          ssl_verify: true
+        secretRef: apisix-keycloak-token
+
+      - name: serverless-post-function
+        enable: true
+        config:
+          functions:
+            - |
+              return function(conf, ctx)
+                if conf.upstream_auth and conf.upstream_auth ~= "" then
+                    ngx.req.set_header("Authorization", conf.upstream_auth)
+                end
+              end
+          phase: before_proxy
+          upstream_auth: ""
+        secretRef: serverless-auth
+
+      - name: proxy-rewrite
+        enable: true
+        config:
+          regex_uri:
+            - "^/devcft/session/basic(.*)"
+            - "/platform2mca-proxy/rest/auth/v1/session/basic$1"
+          scheme: https
+    upstreamRef: devcft-session-basic-upstream
+
+apisixUpstreams:
+  - name: devcft-session-basic-upstream
+    namespace: apisix
+    type: roundrobin
+    scheme: https
+    pass_host: pass
+    timeout: { connect: 6, send: 6, read: 6 }
+    keepalive_pool: { idle_timeout: 60, requests: 1000, size: 320 }
+    nodes:
+      - host: 10.81.170.133
+        port: 8080
+        weight: 100
