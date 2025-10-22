@@ -6,7 +6,7 @@ metadata:
 spec:
   description: Project for Apisix Routes deploy
   sourceRepos:
-  - 'https://github.com/strikehand/kubernetes/tree/8ab93fbdfb33d5a049c914e3d41e7f5838221c39/ApisixRoutes'
+  - 'https://github.com/strikehand/kubernetes.git'
   destinations:
   - namespace: apisix
     server: "*"

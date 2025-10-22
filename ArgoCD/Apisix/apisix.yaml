@@ -9,10 +9,10 @@ spec:
     namespace: apisix
     server: 'https://kubernetes.default.svc'
   source:
-    path: .
-    repoURL: 'https://github.com/strikehand/kubernetes/tree/8ab93fbdfb33d5a049c914e3d41e7f5838221c39/ApisixRoutes'
+    path: 'ApisixRoutes'
+    repoURL: 'https://github.com/strikehand/kubernetes.git'
     targetRevision: 'master'
     helm:
       valueFiles:
-      - ApisixRoutes/TestUpstreams.yaml
+      - TestUpstreams.yaml
   project: apisix-routes 
