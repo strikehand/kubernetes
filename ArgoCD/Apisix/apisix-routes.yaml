@@ -1,0 +1,18 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: apisix-routes
+  namespace: argocd
+spec:
+  destination:
+    name: ''
+    namespace: apisix
+    server: 'https://kubernetes.default.svc'
+  source:
+    path: 'ApisixRoutes'
+    repoURL: 'https://github.com/strikehand/kubernetes.git'
+    targetRevision: 'master'
+    helm:
+      valueFiles:
+      - TestUpstreams.yaml
+  project: apisix-routes 
