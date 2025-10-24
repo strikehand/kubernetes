@@ -8,10 +8,47 @@ spec:
   source:
     repoURL: https://charts.apiseven.com
     chart: apisix
-    targetRevision: 2.15.0  # укажи нужную версию
+    targetRevision: 2.15.0
     helm:
-      valueFiles:
-        - values.yaml
+      values: |
+        replicaCount: 1
+
+        etcd:
+          enabled: true
+          replicaCount: 1
+
+        node_listen:
+          port: 9080
+
+        admin:
+          enable: true
+          key: edd1c9f034335f136f87ad84b625c8f1
+          listen:
+            ip: 0.0.0.0
+            port: 9180
+          allow:
+            - 0.0.0.0/0
+
+        dashboard:
+          enabled: true
+          service:
+            type: ClusterIP
+            port: 9000
+
+        ingressController:
+          enabled: true
+          replicaCount: 1
+          env:
+            manager:
+              ADC_WATCH_NAMESPACE: ""  # слежение за всеми namespace
+              ADC_INGRESS_LOG_LEVEL: debug
+              ADC_EXPERIMENTAL_FEATURE_FLAGS: remote-state-file,parallel-backend-request
+            adcServer:
+              ADC_RUNNING_MODE: ingress
+              ADC_SERVER_URL: http://apisix-admin.apisix.svc.cluster.local:9180/apisix/admin
+              ADC_ADMIN_KEY: edd1c9f034335f136f87ad84b625c8f1
+              ADC_INGRESS_LOG_LEVEL: debug
+              ADC_EXPERIMENTAL_FEATURE_FLAGS: remote-state-file,parallel-backend-request
   destination:
     server: https://kubernetes.default.svc
     namespace: apisix
