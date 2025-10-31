@@ -1,16 +1,16 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "apisix-auth-mapper.fullname" . }}
+  name: {{ .Values.name }}
 spec:
   replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
-      app: {{ include "apisix-auth-mapper.name" . }}
+      app: {{ .Values.name }}
   template:
     metadata:
       labels:
-        app: {{ include "apisix-auth-mapper.name" . }}
+        app: {{ .Values.name }}
     spec:
       serviceAccountName: {{ .Values.serviceAccount.name }}
       containers:

@@ -1,5 +1,4 @@
 name: apisix-auth-mapper
-fullname: apisix-auth-mapper
 replicaCount: 1
 
 image:
