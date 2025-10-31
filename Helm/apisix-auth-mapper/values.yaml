@@ -16,6 +16,6 @@ secret:
 
 serviceAccount:
   name: mapper-sa
-  namespace: default
+  namespace: apisix
   roleName: mapper-role
   roleBindingName: mapper-rolebinding
