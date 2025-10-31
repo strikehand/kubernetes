@@ -1,4 +1,5 @@
 name: apisix-auth-mapper
+namespace: apisix
 replicaCount: 1
 
 image:
