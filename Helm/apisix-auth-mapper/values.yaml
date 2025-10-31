@@ -1,3 +1,5 @@
+name: apisix-auth-mapper
+fullname: apisix-auth-mapper
 replicaCount: 1
 
 image:
@@ -18,4 +20,3 @@ serviceAccount:
   namespace: default
   roleName: mapper-role
   roleBindingName: mapper-rolebinding
-  
