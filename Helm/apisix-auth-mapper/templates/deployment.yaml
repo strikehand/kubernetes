@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "apisix-auth-mapper.fullname" . }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ include "apisix-auth-mapper.name" . }}
+  template:
+    metadata:
+      labels:
+        app: {{ include "apisix-auth-mapper.name" . }}
+    spec:
+      serviceAccountName: {{ .Values.serviceAccount.name }}
+      containers:
+        - name: mapper
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          env:
+            - name: MAPPER_SECRET_NAME
+              value: "{{ .Values.secret.name }}"
+            - name: MAPPER_SECRET_NAMESPACE
+              value: "{{ .Values.secret.namespace }}"
+          ports:
+            - containerPort: {{ .Values.service.port }}
