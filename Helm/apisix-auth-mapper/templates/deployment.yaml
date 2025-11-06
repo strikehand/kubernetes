@@ -23,5 +23,7 @@ spec:
               value: "{{ .Values.secret.name }}"
             - name: MAPPER_SECRET_NAMESPACE
               value: "{{ .Values.secret.namespace }}"
+            - name: MAPPER_PREFERRED_FIELD
+              value: "{{ .Values.secret.preferred_field }}"
           ports:
             - containerPort: {{ .Values.service.port }}
