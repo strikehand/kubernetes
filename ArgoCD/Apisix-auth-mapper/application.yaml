@@ -12,6 +12,7 @@ spec:
     helm:
       valueFiles:
         - values.yaml
+        - mapper.yaml
   destination:
     server: https://kubernetes.default.svc
     namespace: default

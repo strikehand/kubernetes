@@ -1,0 +1,6 @@
+namespace: apisix
+
+authMap:
+  integra-bankspb-1cvhotest: ONEC_VHO
+  integra-bspb-atrium-test: KONDOR
+  devops: devops_login

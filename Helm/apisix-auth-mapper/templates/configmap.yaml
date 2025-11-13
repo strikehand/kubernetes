@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: auth-map
+  namespace: {{ .Values.namespace | default "apisix" }}
+data:
+{{- range $username, $login := .Values.authMap }}
+  {{ $username }}: {{ $login | quote }}
+{{- end }}
