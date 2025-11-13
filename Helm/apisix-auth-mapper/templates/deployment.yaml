@@ -21,7 +21,7 @@ spec:
           env:
             - name: MAPPER_SECRET_NAME
               value: "{{ .Values.secret.name }}"
-            - name: MAPPER_SECRET_NAMESPACE
+            - name: MAPPER_NAMESPACE
               value: "{{ .Values.namespace }}"
             - name: MAPPER_PREFERRED_FIELD
               value: "{{ .Values.secret.preferred_field }}"
