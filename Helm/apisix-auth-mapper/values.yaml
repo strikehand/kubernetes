@@ -15,6 +15,7 @@ secret:
   name: auth-mapper-secrets
   namespace: apisix
   preferred_field: username
+  config_map: auth-map
 
 serviceAccount:
   name: mapper-sa
