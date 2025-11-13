@@ -4,3 +4,4 @@ authMap:
   admin: admin_login
   test: test_login
   devops: devops_login
+  user: user_login
