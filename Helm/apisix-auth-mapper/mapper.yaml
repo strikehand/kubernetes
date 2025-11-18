@@ -5,3 +5,5 @@ authMap:
   test: test_login
   devops: devops_login
   user: user_login
+  integra-bankspb-1cvhotest: ONEC_VHO
+  integra-bspb-atrium-test: KONDOR
