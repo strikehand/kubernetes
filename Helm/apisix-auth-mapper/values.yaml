@@ -4,7 +4,7 @@ replicaCount: 1
 
 image:
   repository: apisix-auth-mapper
-  tag: "v1.3.0"
+  tag: "v1.3.1"
   pullPolicy: IfNotPresent
 
 service:
@@ -15,6 +15,7 @@ secret:
   name: auth-mapper-secrets
   preferred_field: preferred_username
   config_map: auth-map
+  api_key: mapper-auth
 
 serviceAccount:
   name: mapper-sa

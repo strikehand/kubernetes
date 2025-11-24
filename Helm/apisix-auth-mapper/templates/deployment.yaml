@@ -28,6 +28,11 @@ spec:
               value: "{{ .Values.secret.preferred_field }}"
             - name: MAPPER_CONFIGMAP_NAME
               value: "{{ .Values.secret.config_map }}"
+            - name: MAPPER_API_KEY
+              valueFrom:
+                secretKeyRef:
+                name: "{{ .Values.secret.api_key }}"
+                key: token
 
           ports:
             - containerPort: {{ .Values.service.port }}
