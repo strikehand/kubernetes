@@ -7,3 +7,4 @@ authMap:
   user: user_login
   integra-bankspb-1cvhotest: ONEC_VHO
   integra-bspb-atrium-test: KONDOR
+  load-tester: load-tester
