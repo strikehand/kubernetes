@@ -33,6 +33,8 @@ spec:
                 secretKeyRef:
                   name: "{{ .Values.secret.api_key }}"
                   key: token
+            - name: MAPPER_ISSUER
+              value: "{{ .Values.secret.issuer }}"
 
           ports:
             - containerPort: {{ .Values.service.port }}

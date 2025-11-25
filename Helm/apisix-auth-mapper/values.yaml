@@ -4,7 +4,7 @@ replicaCount: 1
 
 image:
   repository: apisix-auth-mapper
-  tag: "v1.3.2"
+  tag: "v1.3.3"
   pullPolicy: IfNotPresent
 
 service:
@@ -16,6 +16,7 @@ secret:
   preferred_field: preferred_username
   config_map: auth-map
   api_key: mapper-auth
+  issuer: https://keycloak.preprod.integra.bankspb.ru/realms/integra
 
 serviceAccount:
   name: mapper-sa
