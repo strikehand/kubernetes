@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: auth-map
+  name: {{ .Release.Name }}
 data:
 {{- range $username, $login := .Values.authMap }}
   {{ $username }}: {{ $login | quote }}

@@ -1,10 +1,9 @@
 name: apisix-auth-mapper
-namespace: apisix
 replicaCount: 1
 
 image:
-  repository: apisix-auth-mapper
-  tag: "v1.3.3"
+  repository: integration-platform.docker.bankspb.ru/apisix-auth-mapper
+  tag: "v1.2.1"
   pullPolicy: IfNotPresent
 
 service:
@@ -13,13 +12,14 @@ service:
 
 secret:
   name: auth-mapper-secrets
-  preferred_field: preferred_username
-  config_map: auth-map
-  api_key: mapper-auth
-  issuer: https://keycloak.dev.integra.bankspb.ru/realms/integra
 
-serviceAccount:
-  name: mapper-sa
-  namespace: apisix
-  roleName: mapper-role
-  roleBindingName: mapper-rolebinding
+mapper:
+  preferred_field: preferred_username
+
+readinessProbe:
+  path: /healthz
+  initialDelaySeconds: 2
+  periodSeconds: 5
+  timeoutSeconds: 1
+  failureThreshold: 2
+  successThreshold: 1

@@ -1,49 +1,39 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ .Values.name }}
+  name: {{ .Release.Name }}
 spec:
   replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
-      app: {{ .Values.name }}
+      app: {{ .Release.Name }}
   template:
     metadata:
       labels:
-        app: {{ .Values.name }}
+        app: {{ .Release.Name }}
     spec:
-      serviceAccountName: {{ .Values.serviceAccount.name }}
+      serviceAccountName: {{ .Release.Name }}
       containers:
         - name: mapper
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
-
           env:
             - name: MAPPER_SECRET_NAME
               value: "{{ .Values.secret.name }}"
             - name: MAPPER_NAMESPACE
-              value: "{{ .Values.namespace }}"
+              value: "{{ .Release.Namespace }}"
             - name: MAPPER_PREFERRED_FIELD
-              value: "{{ .Values.secret.preferred_field }}"
+              value: "{{ .Values.mapper.preferred_field }}"
             - name: MAPPER_CONFIGMAP_NAME
-              value: "{{ .Values.secret.config_map }}"
-            - name: MAPPER_API_KEY
-              valueFrom:
-                secretKeyRef:
-                  name: "{{ .Values.secret.api_key }}"
-                  key: token
-            - name: MAPPER_ISSUER
-              value: "{{ .Values.secret.issuer }}"
-
+              value: "{{ .Release.Name }}"
           ports:
             - containerPort: {{ .Values.service.port }}
-
           readinessProbe:
             httpGet:
-              path: /healthz
+              path: {{ .Values.readinessProbe.path }}
               port: {{ .Values.service.port }}
-            initialDelaySeconds: 2
-            periodSeconds: 5
-            timeoutSeconds: 1
-            failureThreshold: 2
-            successThreshold: 1
+            initialDelaySeconds: {{ .Values.readinessProbe.initialDelaySeconds }}
+            periodSeconds: {{ .Values.readinessProbe.periodSeconds }}
+            timeoutSeconds: {{ .Values.readinessProbe.timeoutSeconds }}
+            failureThreshold: {{ .Values.readinessProbe.failureThreshold }}
+            successThreshold: {{ .Values.readinessProbe.successThreshold }}
