@@ -1,7 +1,8 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ {{ .Release.Name }} }}
+  name: {{ .Values.name }}
+  namespace: {{ .Release.Namespac }}
 spec:
   replicas: {{ .Values.replicaCount }}
   selector:
