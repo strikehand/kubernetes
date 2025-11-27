@@ -3,7 +3,7 @@ replicaCount: 1
 
 image:
   repository: integration-platform.docker.bankspb.ru/apisix-auth-mapper
-  tag: "v1.2.1"
+  tag: "v1.3.3"
   pullPolicy: IfNotPresent
 
 service:
