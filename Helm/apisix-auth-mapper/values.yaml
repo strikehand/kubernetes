@@ -2,7 +2,7 @@ name: apisix-auth-mapper
 replicaCount: 1
 
 image:
-  repository: integration-platform.docker.bankspb.ru/apisix-auth-mapper
+  repository: apisix-auth-mapper
   tag: "v1.3.3"
   pullPolicy: IfNotPresent
 
