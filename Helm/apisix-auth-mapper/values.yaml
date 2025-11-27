@@ -12,11 +12,10 @@ service:
 
 secret:
   name: auth-mapper-secrets
-  api_key: mapper_auth
+  api_key: mapper-auth
 
 mapper:
   preferred_field: preferred_username
-  api_key: mapper_auth
   issuer: https://keycloak.preprod.integra.bankspb.ru/realms/integra
 
 readinessProbe:
