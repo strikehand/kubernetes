@@ -22,6 +22,8 @@ spec:
               value: "{{ .Values.secret.name }}"
             - name: MAPPER_NAMESPACE
               value: "{{ .Release.Namespace }}"
+            - name: MAPPER_API_KEY
+              value: "{{ .Values.mapper.api_key }}"
             - name: MAPPER_PREFERRED_FIELD
               value: "{{ .Values.mapper.preferred_field }}"
             - name: MAPPER_CONFIGMAP_NAME

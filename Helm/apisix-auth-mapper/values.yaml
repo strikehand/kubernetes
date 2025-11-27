@@ -15,6 +15,7 @@ secret:
 
 mapper:
   preferred_field: preferred_username
+  api_key: mapper_auth
 
 readinessProbe:
   path: /healthz
