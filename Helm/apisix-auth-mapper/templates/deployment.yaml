@@ -21,13 +21,18 @@ spec:
             - name: MAPPER_SECRET_NAME
               value: "{{ .Values.secret.name }}"
             - name: MAPPER_NAMESPACE
-              value: "{{ .Release.Namespace }}"
-            - name: MAPPER_API_KEY
-              value: "{{ .Values.mapper.api_key }}"
+              value: "{{ .Values.namespace }}"
             - name: MAPPER_PREFERRED_FIELD
-              value: "{{ .Values.mapper.preferred_field }}"
+              value: "{{ .Values.secret.preferred_field }}"
             - name: MAPPER_CONFIGMAP_NAME
-              value: "{{ .Release.Name }}"
+              value: "{{ .Values.secret.config_map }}"
+            - name: MAPPER_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: "{{ .Values.secret.api_key }}"
+                  key: token
+            - name: MAPPER_ISSUER
+              value: "{{ .Values.mapper.issuer }}" 
           ports:
             - containerPort: {{ .Values.service.port }}
           readinessProbe:
