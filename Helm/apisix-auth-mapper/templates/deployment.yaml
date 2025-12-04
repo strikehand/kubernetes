@@ -33,6 +33,10 @@ spec:
                   key: token
             - name: MAPPER_ISSUER
               value: "{{ .Values.mapper.issuer }}" 
+            - name: MAPPER_START_SESSION_URL
+              value: "{{ .Values.session.startURL }}"
+            - name: MAPPER_END_SESSION_URL
+              value: "{{ .Values.session.endURL }}"                        
           ports:
             - containerPort: {{ .Values.service.port }}
           readinessProbe:

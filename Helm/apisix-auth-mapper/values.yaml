@@ -3,7 +3,7 @@ replicaCount: 1
 
 image:
   repository: apisix-auth-mapper
-  tag: "v1.3.3"
+  tag: "v2.0.0"
   pullPolicy: IfNotPresent
 
 service:
@@ -17,6 +17,10 @@ secret:
 mapper:
   preferred_field: preferred_username
   issuer: https://keycloak.preprod.integra.bankspb.ru/realms/integra
+
+session:
+  startURL: "https://10.81.170.133:8080/platform2mca-proxy/rest/auth/v1/session/basic"
+  endURL: "https://10.81.170.133:8080/platform2mca-proxy/rest/auth/v1/session/basic"
 
 readinessProbe:
   path: /healthz
