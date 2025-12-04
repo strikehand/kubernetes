@@ -13,6 +13,7 @@ service:
 secret:
   name: auth-mapper-secrets
   api_key: mapper-auth
+  config_map: apisix-auth-mapper
 
 mapper:
   preferred_field: preferred_username
