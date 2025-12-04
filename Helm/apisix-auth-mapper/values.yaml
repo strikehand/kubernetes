@@ -16,7 +16,7 @@ secret:
 
 mapper:
   preferred_field: preferred_username
-  issuer: https://keycloak.preprod.integra.bankspb.ru/realms/integra
+  issuer: https://keycloak.dev.integra.bankspb.ru/realms/integra
 
 session:
   startURL: "http://localhost:8085/rest/auth/v1/session/basic"
