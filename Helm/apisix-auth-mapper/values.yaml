@@ -20,8 +20,8 @@ mapper:
   issuer: https://keycloak.dev.integra.bankspb.ru/realms/integra
 
 session:
-  startURL: "http://localhost:8085/rest/auth/v1/session/basic"
-  endURL: "http://localhost:8085/rest/auth/v1/session/"
+  startURL: "http://host.docker.internal:8085/rest/auth/v1/session/basic"
+  endURL: "http://host.docker.internal:8085/rest/auth/v1/session/"
 
 readinessProbe:
   path: /healthz
