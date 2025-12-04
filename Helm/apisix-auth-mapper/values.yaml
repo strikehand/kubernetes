@@ -20,7 +20,7 @@ mapper:
 
 session:
   startURL: "https://10.81.170.133:8080/platform2mca-proxy/rest/auth/v1/session/basic"
-  endURL: "https://10.81.170.133:8080/platform2mca-proxy/rest/auth/v1/session/basic"
+  endURL: "https://10.81.170.133:8080/platform2mca-proxy/rest/auth/v1/session/"
 
 readinessProbe:
   path: /healthz
