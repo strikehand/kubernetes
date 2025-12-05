@@ -3,7 +3,7 @@ replicaCount: 1
 
 image:
   repository: apisix-auth-mapper
-  tag: "v2.0.1"
+  tag: "v2.1.0"
   pullPolicy: IfNotPresent
 
 service:
@@ -18,7 +18,7 @@ secret:
 mapper:
   preferred_field: preferred_username
   issuer: https://keycloak.dev.integra.bankspb.ru/realms/integra
-
+  sessionTTL: "15m"
 session:
   startURL: "http://host.docker.internal:8085/rest/auth/v1/session/basic"
   endURL: "http://host.docker.internal:8085/rest/auth/v1/session/"

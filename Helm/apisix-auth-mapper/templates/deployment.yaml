@@ -36,7 +36,9 @@ spec:
             - name: MAPPER_START_SESSION_URL
               value: "{{ .Values.session.startURL }}"
             - name: MAPPER_END_SESSION_URL
-              value: "{{ .Values.session.endURL }}"                        
+              value: "{{ .Values.session.endURL }}"
+            - name: MAPPER_SESSION_TTL
+              value: "{{ .Values.mapper.sessionTTL }}"                        
           ports:
             - containerPort: {{ .Values.service.port }}
           readinessProbe:
