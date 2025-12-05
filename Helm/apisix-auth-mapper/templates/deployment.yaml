@@ -23,7 +23,7 @@ spec:
             - name: MAPPER_NAMESPACE
               value: "{{ .Values.namespace }}"
             - name: MAPPER_PREFERRED_FIELD
-              value: "{{ .Values.secret.preferred_field }}"
+              value: "{{ .Values.mapper.preferred_field }}"
             - name: MAPPER_CONFIGMAP_NAME
               value: "{{ .Values.secret.config_map }}"
             - name: MAPPER_API_KEY
